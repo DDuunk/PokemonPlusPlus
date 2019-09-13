@@ -38,4 +38,5 @@
 *.sln
 /.vs
 /Debug
+/src/Debug
 
