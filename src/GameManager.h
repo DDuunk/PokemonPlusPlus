@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Graphics.h"
+#include "Texture.h"
 #include "Timer.h"
-#include "GameEntity.h"
 
 class GameManager {
 
@@ -18,8 +17,7 @@ private:
 
 	SDL_Event mEvents;
 
-	GameEntity* mParent;
-	GameEntity* mChild;
+	Texture* mTex;
 
 public:
 	static GameManager* Instance();
