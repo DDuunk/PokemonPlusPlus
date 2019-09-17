@@ -39,4 +39,6 @@
 /.vs
 /Debug
 /src/Debug
+/Release
+/src/Release
 
