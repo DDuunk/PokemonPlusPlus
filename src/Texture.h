@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GameEntity.h"
-#include "Graphics.h"
+#include "AssetManager.h"
 
 class Texture : public GameEntity {
 
@@ -10,8 +10,11 @@ private:
 
 	Graphics* mGraphics;
 
+	int mWidth;
+	int mHeight;
+
 public:
-	Texture(std::string path);
+	Texture(std::string filename);
 	~Texture();
 
 	virtual void Render();

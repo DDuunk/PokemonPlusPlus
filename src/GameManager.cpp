@@ -22,16 +22,19 @@ GameManager::GameManager() {
 	if (!Graphics::Initialized())
 		mQuit = true;
 
+	mAssetMgr = AssetManager::Instance();
+
 	mTimer = Timer::Instance();
 
-	std::string path = SDL_GetBasePath();
-	path.append("assets\\images\\IntroSpriteSheet.png");
-	mTex = new Texture(path);
+	mTex = new Texture("IntroSpriteSheet.png");
 }
 
 GameManager::~GameManager() {
 	Graphics::Release();
 	mGrapics = NULL;
+
+	AssetManager::Release();
+	mAssetMgr = NULL;
 
 	Timer::Release();
 	mTimer = NULL;

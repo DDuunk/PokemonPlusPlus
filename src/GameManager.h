@@ -12,6 +12,7 @@ private:
 
 	bool mQuit;
 	Graphics* mGrapics;
+	AssetManager* mAssetMgr;
 
 	Timer* mTimer;
 
