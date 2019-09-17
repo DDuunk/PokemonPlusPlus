@@ -6,12 +6,10 @@
 class Graphics {
 
 public:
-
 	static const int SCREEN_WIDTH = 640;
 	static const int SCREEN_HEIGHT = 480;
 
 private:
-
 	static Graphics* sInstance;
 	static bool sInitialized;
 
@@ -19,7 +17,6 @@ private:
 	SDL_Surface* mBackBuffer;
 
 public:
-
 	static Graphics* Instance();
 	static void Release();
 	static bool Initialized();
@@ -27,10 +24,8 @@ public:
 	void Render();
 
 private:
-
 	Graphics();
 	~Graphics();
 
 	bool Init();
-
 };
