@@ -57,6 +57,10 @@ void GameEntity::Parent(GameEntity* parent) {
 	mParent = parent;
 }
 
+void GameEntity::Translate(Vector2 vec) {
+	mPos += vec;
+}
+
 GameEntity* GameEntity::Parent() {
 	return mParent;
 }
