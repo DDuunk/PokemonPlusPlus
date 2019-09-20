@@ -28,16 +28,16 @@ GameManager::GameManager() {
 
 	mTimer = Timer::Instance();
 
-	mTex = new Texture("Hero&Heroine_Spritesheet.png", 8, 37, 15, 19);
+	mTex = new Texture("Hello World!", "ARCADE_I.TTF", 36, { 255, 0, 0 });
 	mTex->Pos(Vector2(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f));
 }
 
 GameManager::~GameManager() {
-	Graphics::Release();
-	mGrapics = NULL;
-
 	AssetManager::Release();
 	mAssetMgr = NULL;
+
+	Graphics::Release();
+	mGrapics = NULL;
 
 	InputManager::Release();
 	mInputMgr = NULL;
@@ -63,11 +63,11 @@ void GameManager::Run() {
 
 			mInputMgr->Update();
 
-			if (mInputMgr->KeyDown(SDL_SCANCODE_W)) {
-				mTex->Translate(Vector2(0.0f, -40.0f) * mTimer->DeltaTime());
-			} else if (mInputMgr->KeyDown(SDL_SCANCODE_S)) {
-				mTex->Translate(Vector2(0.0f, 40.0f) * mTimer->DeltaTime());
-			}
+//			if (mInputMgr->KeyDown(SDL_SCANCODE_W)) {
+//				mTex->Translate(Vector2(0.0f, -40.0f) * mTimer->DeltaTime());
+//			} else if (mInputMgr->KeyDown(SDL_SCANCODE_S)) {
+//				mTex->Translate(Vector2(0.0f, 40.0f) * mTimer->DeltaTime());
+//			}
 
 			mGrapics->ClearBackBuffer();
 	
