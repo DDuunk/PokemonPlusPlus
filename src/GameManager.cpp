@@ -73,6 +73,8 @@ void GameManager::Run() {
 //			} else if (mInputMgr->KeyDown(SDL_SCANCODE_S)) {
 //				mTex->Translate(Vector2(0.0f, 40.0f) * mTimer->DeltaTime());
 //			}
+//
+			mTex->Rotate(10 * mTimer->DeltaTime());
 
 			mGrapics->ClearBackBuffer();
 	
