@@ -26,6 +26,8 @@ GameManager::GameManager() {
 
 	mInputMgr = InputManager::Instance();
 
+	mAudioMgr = AudioManager::Instance();
+
 	mTimer = Timer::Instance();
 
 	mTex = new Texture("Hello World!", "ARCADE_I.TTF", 36, { 255, 0, 0 });
@@ -33,6 +35,9 @@ GameManager::GameManager() {
 }
 
 GameManager::~GameManager() {
+	AudioManager::Release();
+	mAudioMgr = NULL;
+	
 	AssetManager::Release();
 	mAssetMgr = NULL;
 

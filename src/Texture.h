@@ -1,3 +1,10 @@
+/**
+ * @file		Texture.cpp
+ * @date		17-09-2019
+ * @author		Dylan Duunk
+ *
+ * @brief		Texture animation handler
+ */
 #pragma once
 
 #include "GameEntity.h"

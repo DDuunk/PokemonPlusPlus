@@ -1,3 +1,10 @@
+/**
+ * @file		AnimatedTexture.cpp
+ * @date		20-09-2019
+ * @author		Dylan Duunk
+ *
+ * @brief		Texture animation handler
+ */
 #pragma once
 
 #include "Timer.h"
@@ -27,7 +34,7 @@ private:
 	bool mAnimationDone;
 
 public:
-	AnimatedTexture(std::string filename, int x, int y, int w, int h, int frameCount, float animationSpeed, ANIM_DIR animationrDir);
+	AnimatedTexture(std::string filename, int x, int y, int w, int h, int frameCount, float animationSpeed, ANIM_DIR animationDir);
 	~AnimatedTexture();
 
 	void WrapMode(WRAP_MODE mode);

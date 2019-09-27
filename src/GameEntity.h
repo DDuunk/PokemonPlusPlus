@@ -1,3 +1,10 @@
+/**
+ * @file		GameEnitity.cpp
+ * @date		17-09-2019
+ * @author		Dylan Duunk
+ *
+ * @brief		Game entity handler
+ */
 #pragma once
 
 #include "MathHelper.h"

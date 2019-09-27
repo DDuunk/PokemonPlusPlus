@@ -1,3 +1,10 @@
+/**
+ * @file		InputManager.cpp
+ * @date		19-09-2019
+ * @author		Dylan Duunk
+ *
+ * @brief		Input handler
+ */
 #pragma once
 
 #include <SDL.h>

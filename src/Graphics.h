@@ -1,3 +1,10 @@
+/**
+ * @file		Graphics.cpp
+ * @date		17-09-2019
+ * @author		Dylan Duunk
+ *
+ * @brief		Graphics handler
+ */
 #pragma once
 
 #include <SDL.h>

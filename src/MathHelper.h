@@ -1,3 +1,10 @@
+/**
+ * @file		NA
+ * @date		17-09-2019
+ * @author		Dylan Duunk
+ *
+ * @brief		Math helper
+ */
 #pragma once
 
 #include <math.h>
