@@ -1,7 +1,7 @@
 #include "AnimatedTexture.h"
 
 AnimatedTexture::AnimatedTexture(std::string filename, int x, int y, int w, int h, int frameCount, float animationSpeed, ANIM_DIR animationDir)
-	: Texture(filename, x, y, w, h) 
+	: Texture(filename, x, y, w, h)
 {
 	mTimer = Timer::Instance();
 
@@ -33,9 +33,11 @@ void AnimatedTexture::Update() {
 		mAnimationTimer += mTimer->DeltaTime();
 
 		if (mAnimationTimer >= mAnimationSpeed) {
+			// Only loop if the wrap mode is loop
 			if (mWrapMode == loop) {
 				mAnimationTimer -= mAnimationSpeed;
-			} else {
+			}
+			else {
 				mAnimationDone = true;
 				mAnimationTimer = mAnimationSpeed - mTimePerFrame;
 			}
@@ -43,7 +45,8 @@ void AnimatedTexture::Update() {
 
 		if (mAnimationDirection == horizontal) {
 			mClipRect.x = mStartX + (int)(mAnimationTimer / mTimePerFrame) * mWidth;
-		} else {
+		}
+		else {
 			mClipRect.y = mStartY + (int)(mAnimationTimer / mTimePerFrame) * mHeight;
 		}
 	}

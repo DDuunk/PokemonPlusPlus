@@ -1,8 +1,10 @@
 #include "AudioManager.h"
 
+// Initializing to NULL
 AudioManager* AudioManager::sInstance = NULL;
 
 AudioManager* AudioManager::Instance() {
+	// Create a new instance if no instance was created
 	if (sInstance == NULL)
 		sInstance = new AudioManager();
 
@@ -17,17 +19,20 @@ void AudioManager::Release() {
 AudioManager::AudioManager() {
 	mAssetMgr = AssetManager::Instance();
 
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0) {
+	// Initialize the SDL_mixer using 44.1 khz and 2 channels (change if needed) and handle initialization errors
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) < 0)
 		printf("Mixer Initialization Error: %s\n", Mix_GetError());
-	}
 }
 
 AudioManager::~AudioManager() {
 	mAssetMgr = NULL;
+
+	// Close the SDL_mixer
 	Mix_Quit();
 }
 
 void AudioManager::PlayMusic(std::string filename, int loops) {
+	// Play the Mix_Music* loaded in the AssetManager so that the file is not reloaded every time
 	Mix_PlayMusic(mAssetMgr->GetMusic(filename), loops);
 }
 
@@ -42,5 +47,6 @@ void AudioManager::ResumeMusic() {
 }
 
 void AudioManager::PlaySFX(std::string filename, int loops, int channel) {
+	// Play the Mix_Chunk* loaded in the AssetManager so that the file is not reloaded every time
 	Mix_PlayChannel(channel, mAssetMgr->GetSFX(filename), loops);
 }

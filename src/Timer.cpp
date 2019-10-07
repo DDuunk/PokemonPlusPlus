@@ -1,8 +1,10 @@
 #include "Timer.h"
 
+// Initializing sInstance to NULL
 Timer* Timer::sInstance = NULL;
 
 Timer* Timer::Instance() {
+	// Create a new instance of Timer if no instance was created before
 	if (sInstance == NULL)
 		sInstance = new Timer();
 
@@ -15,6 +17,7 @@ void Timer::Release() {
 }
 
 Timer::Timer() {
+	// Using Reset to initialize all the values beside mTimeScale
 	Reset();
 	mTimeScale = 1.0f;
 }

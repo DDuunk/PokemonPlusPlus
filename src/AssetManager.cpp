@@ -1,11 +1,13 @@
 #include "AssetManager.h"
 
+// Initializing to NULL
 AssetManager* AssetManager::sInstance = NULL;
 
 AssetManager* AssetManager::Instance() {
+	// Create a new instance if no instance was created
 	if (sInstance == NULL)
 		sInstance = new AssetManager();
-	
+
 	return sInstance;
 }
 
@@ -19,6 +21,7 @@ AssetManager::AssetManager() {
 }
 
 AssetManager::~AssetManager() {
+	// Freeing all loaded Textures
 	for (auto tex : mTextures) {
 		if (tex.second != NULL)
 			SDL_DestroyTexture(tex.second);
@@ -26,6 +29,7 @@ AssetManager::~AssetManager() {
 
 	mTextures.clear();
 
+	// Freeing all rendered text
 	for (auto text : mText) {
 		if (text.second != NULL)
 			SDL_DestroyTexture(text.second);
@@ -33,35 +37,61 @@ AssetManager::~AssetManager() {
 
 	mText.clear();
 
+	// Freeing all loaded fonts
 	for (auto font : mFonts) {
 		if (font.second != NULL)
 			TTF_CloseFont(font.second);
 	}
 
 	mFonts.clear();
+
+	// Freeing all loaded music
+	for (auto music : mMusic) {
+		if (music.second != NULL)
+			Mix_FreeMusic(music.second);
+	}
+
+	mMusic.clear();
+
+	// Freeing all loaded sound effects
+	for (auto sfx : mSFX) {
+		if (sfx.second != NULL)
+			Mix_FreeChunk(sfx.second);
+	}
+
+	mSFX.clear();
 }
 
 SDL_Texture* AssetManager::GetTexture(std::string filename) {
+	// Get the full path of the file
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("assets\\" + filename);
 
+	// If the file hasn't been already loaded, load it and add it to the mTextures map
 	if (mTextures[fullPath] == nullptr)
 		mTextures[fullPath] = Graphics::Instance()->LoadTexture(fullPath);
 
+	// Returning the cached file from the map
 	return mTextures[fullPath];
 }
 
 TTF_Font* AssetManager::GetFont(std::string filename, int size) {
+	// Gets the full path of the font
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("assets\\" + filename);
+
+	// The key takes into account the size of the font aswell since the same font can be opened with different sizes
 	std::string key = fullPath + (char)size;
 
+	// If the font hasn't been already loaded, load it and add it to the the mFonts map	
 	if (mFonts[key] == nullptr) {
 		mFonts[key] = TTF_OpenFont(fullPath.c_str(), size);
+		// Error handling for opening the font
 		if (mFonts[key] == nullptr)
 			printf("Font Loading Error: Font-%s Error -%s\n", filename.c_str(), TTF_GetError());
 	}
 
+	// Returning the cached font from the map
 	return mFonts[key];
 }
 
@@ -77,27 +107,35 @@ SDL_Texture* AssetManager::GetText(std::string text, std::string filename, int s
 }
 
 Mix_Music* AssetManager::GetMusic(std::string filename) {
+	// Get the full path of the WAV file
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("assets\\" + filename);
 
+	// IF the file hasn't been already loaded, load it and add it to the mMusic map
 	if (mMusic[fullPath] == nullptr) {
 		mMusic[fullPath] = Mix_LoadMUS(fullPath.c_str());
+		// Error handling for file loading
 		if (mMusic[fullPath] == nullptr)
 			printf("Music Loading Error: File-%s Error -%s\n", filename.c_str(), Mix_GetError());
 	}
 
+	// Returning the cached file from the map
 	return mMusic[fullPath];
 }
 
 Mix_Chunk* AssetManager::GetSFX(std::string filename) {
+	// Get the full path of the WAV file
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append("assets\\" + filename);
 
+	// If the file hasn't been already loaded, load it and add it to the mSFX map
 	if (mSFX[fullPath] == nullptr) {
 		mSFX[fullPath] = Mix_LoadWAV(fullPath.c_str());
+		// Error handling for file loading
 		if (mSFX[fullPath] == nullptr)
 			printf("SFX Loading Error: File-%s Error -%s\n", filename.c_str(), Mix_GetError());
 	}
 
+	// Returning the cached file from the map
 	return mSFX[fullPath];
 }
