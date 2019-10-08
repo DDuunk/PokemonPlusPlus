@@ -36,8 +36,7 @@ void AnimatedTexture::Update() {
 			// Only loop if the wrap mode is loop
 			if (mWrapMode == loop) {
 				mAnimationTimer -= mAnimationSpeed;
-			}
-			else {
+			} else {
 				mAnimationDone = true;
 				mAnimationTimer = mAnimationSpeed - mTimePerFrame;
 			}
@@ -45,8 +44,7 @@ void AnimatedTexture::Update() {
 
 		if (mAnimationDirection == horizontal) {
 			mClipRect.x = mStartX + (int)(mAnimationTimer / mTimePerFrame) * mWidth;
-		}
-		else {
+		} else {
 			mClipRect.y = mStartY + (int)(mAnimationTimer / mTimePerFrame) * mHeight;
 		}
 	}
